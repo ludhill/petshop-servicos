@@ -4,7 +4,7 @@ venv/
 __pycache__/
 *.pyc
 
-# Arquivos do sistema
+# Arquivos do sistema9a8f7b6c2e1d4f3a0b9c8d7e6f5a4b3c
 .DS_Store
 *.sqlite3
 *.db

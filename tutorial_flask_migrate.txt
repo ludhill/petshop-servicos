@@ -1,0 +1,70 @@
+Perfeito, Lucas! Aqui está um mini tutorial em formato de apresentação que você pode usar para explicar o uso do **Flask-Migrate** e da pasta `migrations/` para seus colegas:
+
+---
+
+## 🎓 Tutorial: Por que usamos Flask-Migrate?
+
+### 🧱 O que é Flask-Migrate?
+
+> Uma ferramenta que ajuda a controlar e aplicar mudanças no banco de dados de forma segura e organizada.
+
+---
+
+### 🧠 Por que precisamos disso?
+
+- Cada membro do grupo pode alterar os modelos
+- Evita conflitos e perda de dados
+- Permite atualizar o banco com um único comando
+
+---
+
+### 📁 O que é a pasta `migrations/`?
+
+- Armazena o histórico de mudanças no banco
+- Cada alteração gera um novo script
+- É como um “controle de versão” para o banco de dados
+
+---
+
+### ✅ Como usamos no projeto?
+
+1. **Altere os modelos normalmente**
+2. Gere a migração:
+   ```bash
+   flask db migrate -m "Descrição da mudança"
+   ```
+3. Aplique a mudança:
+   ```bash
+   flask db upgrade
+   ```
+
+---
+
+### 🧪 Exemplo prático
+
+Lucas adiciona um campo `observacoes` em `Servico`:
+
+```bash
+flask db migrate -m "Adiciona campo observacoes"
+flask db upgrade
+```
+
+Moisés e Rafael só precisam rodar:
+
+```bash
+git pull
+flask db upgrade
+```
+
+---
+
+### 🛡️ Benefícios
+
+- Banco de dados sempre sincronizado
+- Histórico de mudanças salvo
+- Evita recriar tabelas manualmente
+- Cada um trabalha com segurança
+
+---
+
+Se quiser, posso transformar isso em um PDF ou slide visual com ícones e cores. Quer que eu gere um PDF de apresentação para vocês?

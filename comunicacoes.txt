@@ -1,0 +1,29 @@
+1. Gestão de Clientes (CRM) e Gestão de Vendas/PDV:
+ * CRM envia para Vendas/PDV: Dados do cliente (nome, endereço, histórico de compras anteriores) são automaticamente carregados ao iniciar uma venda, agilizando o atendimento. Informações sobre pets (raça, idade, alergias) podem ser acessadas para recomendar produtos ou serviços.
+ * Vendas/PDV envia para CRM: Todas as vendas de produtos e serviços são registradas no histórico do cliente no CRM. Isso alimenta o CRM com dados sobre preferências de compra, frequência de visitas e quais pets estão associados a quais produtos/serviços, permitindo campanhas de marketing mais personalizadas e programas de fidelidade.
+2. Gestão de Vendas/PDV e Gestão de Estoque:
+ * Vendas/PDV envia para Estoque: Cada venda de produto automaticamente baixa o item do estoque. Isso garante que o estoque esteja sempre atualizado e evita vendas de produtos que não estão disponíveis.
+ * Estoque envia para Vendas/PDV: Informações sobre a disponibilidade de produtos são acessadas pelo PDV para alertar o vendedor se um item está em falta ou com baixo estoque.
+3. Gestão de Vendas/PDV e Gestão Financeira:
+ * Vendas/PDV envia para Financeiro: Todas as vendas geram automaticamente um lançamento nas Contas a Receber, registrando o valor, forma de pagamento e data de vencimento (se for a prazo). Isso facilita a conciliação bancária e o controle do fluxo de caixa.
+4. Gestão de Estoque e Gestão de Fornecedores:
+ * Estoque envia para Fornecedores: Quando o estoque de um produto atinge o nível mínimo (definido no módulo de Estoque), o sistema pode gerar automaticamente uma sugestão de Ordem de Compra para o módulo de Gestão de Fornecedores, agilizando o processo de reposição.
+ * Fornecedores envia para Estoque: Ao registrar o recebimento de uma compra de fornecedor (nota fiscal de entrada), o módulo de Fornecedores atualiza automaticamente o estoque, aumentando a quantidade dos produtos recebidos.
+5. Gestão de Serviços e Gestão de Clientes (CRM):
+ * Serviços envia para CRM: O agendamento e a execução de serviços (banho, tosa, consulta) são registrados no histórico do cliente e do pet no CRM. Isso permite o acompanhamento da saúde do animal, lembretes de retornos e vacinas, e a oferta de pacotes de serviços.
+ * CRM envia para Serviços: As informações do pet (alergias, comportamentos) registradas no CRM são acessadas pelo módulo de Serviços para que o profissional possa oferecer um atendimento personalizado e seguro.
+6. Gestão de Serviços e Gestão Financeira:
+ * Serviços envia para Financeiro: A execução de um serviço gera automaticamente um lançamento nas Contas a Receber, similar à venda de um produto.
+ * Serviços envia para RH (se houver): Se houver controle de comissão para banhistas, tosadores ou veterinários, o módulo de Serviços pode enviar dados para o RH para o cálculo automático das comissões.
+7. Gestão Financeira e Relatórios e Análises:
+ * Financeiro envia para Relatórios: Todos os dados financeiros (receitas, despesas, fluxo de caixa) são a base para a geração de relatórios de DRE, balanço e indicadores de desempenho.
+8. Todos os Módulos e Relatórios e Análises:
+ * Praticamente todos os módulos fornecem dados brutos que são processados e analisados pelo módulo de Relatórios e Análises. Por exemplo:
+   * Vendas: Vendas por produto, por período, por cliente.
+   * Estoque: Giro de estoque, produtos com baixo/alto giro.
+   * CRM: Clientes mais fiéis, clientes que não compram há muito tempo.
+   * Serviços: Serviços mais procurados, horários de pico.
+Em resumo, a comunicação se dá por um fluxo contínuo de dados:
+ * Registro inicial: Uma ação (venda, agendamento, compra) é registrada em um módulo.
+ * Atualização automática: Esse registro desencadeia atualizações automáticas em outros módulos relacionados.
+ * Consolidação de dados: Todos os dados fluem para um banco de dados centralizado, permitindo que o módulo de Relatórios e Análises extraia informações de diversas fontes para gerar insights estratégicos.

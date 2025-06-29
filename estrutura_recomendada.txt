@@ -1,0 +1,8 @@
+/petshop                    # Diretório raiz do projeto
+/petshop/app                # Diretório com classe para iniciar a aplicação com todas as configurações necessárias (arquivo __init__.py)
+/petshop/templates
+/petshop/models             # Diretório com a classe que estabelece a conexão com o SGBD e as demais classes de mapeamento
+                            #       (quando usando ORM) ou as classes que fazem o acesso e manipulação tradicional do SGBD.
+/petshop/dominio            # Diretório apenas com as classes que implementam o domínio da aplicação, ou seja, os conceitos inerentes                                                    ao contexto do projeto. Podemos também ter subdiretórios dentro deste, por exemplo, 
+/petshop/dominio/produto
+/petshop/blueprints         # Diretório apenas com os blueprints, sendo um para cada domínio.

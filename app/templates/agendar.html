@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Agendar Serviço{% endblock %}
+{% block content %}
+<h2>Agendar Serviço</h2>
+
+<form method="post">
+  <label>Profissional:</label>
+  <select name="funcionario_id" id="funcionario" onchange="atualizarServicos()">
+    <option value="">Selecione</option>
+    {% for f in profissionais %}
+      <option value="{{ f.id }}" data-cargo="{{ f.cargo }}">{{ f.nome }} ({{ f.cargo }})</option>
+    {% endfor %}
+  </select><br>
+
+  <label>Serviço:</label>
+  <select name="tipo" id="tipo">
+    <option value="">Selecione um profissional primeiro</option>
+  </select><br>
+
+  <label>Pet:</label>
+  <select name="pet_id">
+    {% for pet in pets %}
+      <option value="{{ pet.id }}">{{ pet.nome }} ({{ pet.dono.nome }})</option>
+    {% endfor %}
+  </select><br>
+
+  <label>Data:</label>
+  <input type="datetime-local" name="data"><br>
+
+  <button type="submit">Agendar</button>
+</form>
+
+<script>
+const servicosPorCargo = {
+  "Veterinário": ["Consulta", "Vacinação", "Exame"],
+  "Tosador": ["Tosa", "Hidratação", "Desembolo"],
+  "Banhista": ["Banho", "Hidratação"]
+};
+
+function atualizarServicos() {
+  const selectProf = document.getElementById("funcionario");
+  const cargo = selectProf.options[selectProf.selectedIndex].dataset.cargo;
+  const servicos = servicosPorCargo[cargo] || [];
+
+  const selectTipo = document.getElementById("tipo");
+  selectTipo.innerHTML = "";
+
+  if (servicos.length === 0) {
+    const opt = document.createElement("option");
+    opt.textContent = "Nenhum serviço disponível";
+    selectTipo.appendChild(opt);
+    return;
+  }
+
+  servicos.forEach(s => {
+    const opt = document.createElement("option");
+    opt.value = s;
+    opt.textContent = s;
+    selectTipo.appendChild(opt);
+  });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Serviços Agendados{% endblock %}
+{% block content %}
+<!-- Botões de exportação -->
+<div class="export-buttons">
+  <a class="button-link" href="{{ url_for('main.exportar_excel', status=request.args.get('status'), data_min=request.args.get('data_min')) }}">📥 Exportar Excel</a>
+  <a class="button-link" href="{{ url_for('main.exportar_pdf', status=request.args.get('status'), data_min=request.args.get('data_min')) }}">📄 Exportar PDF</a>
+</div>
+
+<!-- Tabela de serviços -->
+<table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Data</th>
+      <th>Pet</th>
+      <th>Tutor</th>
+      <th>Profissional</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in servicos.items %}
+    <tr>
+      <td>{{ s.tipo }}</td>
+      <td>{{ s.data_agendada.strftime('%d/%m/%Y %H:%M') }}</td>
+      <td>{{ s.pet.nome }}</td>
+      <td>{{ s.pet.dono.nome }}</td>
+      <td>{{ s.funcionario.nome }}</td>
+      <td>{{ s.status }}</td>
+      <td class="actions">
+        <a href="{{ url_for('main.editar_servico', id=s.id) }}">Editar</a>
+        <a href="{{ url_for('main.excluir_servico', id=s.id) }}" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Paginação -->
+<div class="pagination">
+  {% if servicos.has_prev %}
+    <a href="{{ url_for('main.index', page=servicos.prev_num, status=request.args.get('status'), data_min=request.args.get('data_min')) }}">← Anterior</a>
+  {% endif %}
+
+  Página {{ servicos.page }} de {{ servicos.pages }}
+
+  {% if servicos.has_next %}
+    <a href="{{ url_for('main.index', page=servicos.next_num, status=request.args.get('status'), data_min=request.args.get('data_min')) }}">Próxima →</a>
+  {% endif %}
+</div>
+
+
+{% endblock %}

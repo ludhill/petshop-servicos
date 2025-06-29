@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Editar Serviço{% endblock %}
+{% block content %}
+<h2>Editar Serviço</h2>
+
+<form method="post">
+  <label>Status:</label>
+  <select name="status">
+    <option value="agendado" {% if servico.status == 'agendado' %}selected{% endif %}>Agendado</option>
+    <option value="concluído" {% if servico.status == 'concluído' %}selected{% endif %}>Concluído</option>
+    <option value="cancelado" {% if servico.status == 'cancelado' %}selected{% endif %}>Cancelado</option>
+  </select><br>
+
+  <label>Profissional:</label>
+  <select name="funcionario_id">
+    {% for f in profissionais %}
+      <option value="{{ f.id }}" {% if f.id == servico.funcionario_id %}selected{% endif %}>{{ f.nome }}</option>
+    {% endfor %}
+  </select><br>
+
+  <button type="submit">Salvar Alterações</button>
+</form>
+{% endblock %}

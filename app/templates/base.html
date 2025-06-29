@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Petshop{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <h1>Petshop</h1>
+        <nav aria-label="Menu principal">
+            <a href="{{ url_for('main.index') }}">Início</a> |
+            <a href="{{ url_for('main.agendar') }}">Agendar Serviço</a>
+        </nav> 
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p style="text-align:center;">&copy; 2025 Petshop</p>
+    </footer>
+
+{% block scripts %}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+O nosso pode ser que fique assim: 
+petshop/
+├── app/
+│   ├── __init__.py
+│   ├── models/
+│   │   ├── servico.py
+│   │   ├── cliente.py
+│   │   └── financeiro.py
+│   ├── routes/
+│   │   ├── servicos.py
+│   │   └── crm.py
+│   ├── templates/
+│   └── static/
+├── config.py
+├── run.py

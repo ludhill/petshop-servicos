@@ -144,6 +144,36 @@ def exportar_excel():
         mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     )
 
+@main.route('/importar/excel', methods=['POST'])
+def importar_excel():
+    file = request.files.get('arquivo')
+    if not file or not file.filename.endswith(('.xls', '.xlsx')):
+        flash("Arquivo inválido. Envie um Excel .xls ou .xlsx")
+        return redirect(url_for('main.index'))
+
+    try:
+        df = pd.read_excel(file)
+        for _, row in df.iterrows():
+            pet = Pet.query.filter_by(nome=row['Pet']).first()
+            dono = Cliente.query.filter_by(nome=row['Tutor']).first()
+            funcionario = Funcionario.query.filter_by(nome=row['Profissional']).first()
+
+            if pet and funcionario:
+                novo_servico = Servico(
+                    tipo=row['Tipo'],
+                    data_agendada=datetime.strptime(row['Data'], '%d/%m/%Y %H:%M'),
+                    pet_id=pet.id,
+                    funcionario_id=funcionario.id,
+                    status=row['Status']
+                )
+                db.session.add(novo_servico)
+        db.session.commit()
+        flash("Serviços importados com sucesso!")
+    except Exception as e:
+        flash(f"Erro ao importar: {str(e)}")
+
+    return redirect(url_for('main.index'))
+
 @main.route('/exportar/pdf')
 def exportar_pdf():
     status = request.args.get('status')

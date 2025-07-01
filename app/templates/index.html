@@ -6,6 +6,10 @@
   <a class="button-link" href="{{ url_for('main.exportar_excel', status=request.args.get('status'), data_min=request.args.get('data_min')) }}">📥 Exportar Excel</a>
   <a class="button-link" href="{{ url_for('main.exportar_pdf', status=request.args.get('status'), data_min=request.args.get('data_min')) }}">📄 Exportar PDF</a>
 </div>
+<form method="POST" action="{{ url_for('main.importar_excel') }}" enctype="multipart/form-data">
+  <input type="file" name="arquivo" accept=".xls,.xlsx" required>
+  <button type="submit">Importar Excel</button>
+</form>
 
 <!-- Tabela de serviços -->
 <table>

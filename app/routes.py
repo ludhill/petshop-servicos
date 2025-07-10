@@ -43,6 +43,27 @@ def cadastrar_cliente():
         return redirect(url_for('main.index'))
     return render_template('cliente.html')
 
+@main.route('/cadastrar-funcionario', methods=['GET', 'POST'])
+def cadastrarfuncionario():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        cargo = request.form['cargo']
+
+        novo_funcionario = Funcionario(nome=nome, cargo=cargo)
+        db.session.add(novo_funcionario)
+        db.session.commit()
+
+        flash("Funcionário cadastrado com sucesso!")
+        return redirect(url_for('main.cadastrarfuncionario'))
+
+    return render_template('cadastrar_funcionario.html')
+
+@main.route('/profissionais')
+def profissionais():
+    todos = Funcionario.query.all()
+    return render_template('profissionais.html', profissionais=todos)
+
+
 @main.route('/agendar', methods=['GET', 'POST'])
 def agendar():
     clientes = Cliente.query.all()
